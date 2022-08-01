@@ -29,9 +29,7 @@ body {
 
     border: 4px solid #3f4242;
     border-radius: 10em 10em;
-    margin: 1em 3em;
-
-    display: inline-block;
+    margin: 1em 4em;
 }
 
 /* choices buttons */
@@ -39,6 +37,7 @@ body {
 .choices button {
     background-color: #a2adac;
     margin: 1em;
+    border: 4px solid #3f4242;
 }
 
 .fa-solid {
