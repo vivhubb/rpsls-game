@@ -34,12 +34,24 @@ body {
     display: inline-block;
 }
 
+/* choices buttons */
+
+.choices button {
+    background-color: #a2adac;
+    margin: 1em;
+}
+
+.fa-solid {
+    font-size: 4em;
+    background-color: #a2adac;
+}
+
 /* footer */
 
 .footer {
-    position: absolute;
     bottom: 0.1em;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 .game-rules {
