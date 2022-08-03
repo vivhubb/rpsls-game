@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", function() {
  * @param {string} playerChoice: the choice made by the Player
  */
 function game(playerChoice) {
+
+    resetZones();
+
     displayPlayerChoice(playerChoice);
 };
 
@@ -29,10 +32,24 @@ function game(playerChoice) {
 function displayPlayerChoice(playerChoice) {
     
     let playerZone = document.getElementById('playerZone');
-    let image = '../assets/images/' + playerChoice + '.png';
+    let image = 'assets/images/' + playerChoice + '.png';
     let displayChoice = document.createElement('img');
-    displayChoice.setAttribute('class', 'images')
+
+    displayChoice.setAttribute('class', 'images');
     displayChoice.src = image;
+
     playerZone.appendChild(displayChoice);
 
+};
+
+/**
+ * this function deletes the previously selected images
+ */
+function resetZones() {
+
+    let replaceImage = document.getElementsByClassName('images');
+
+    for (let i = 0; i < replaceImage.length; i++) {
+        replaceImage[i].remove();
+    }
 };
