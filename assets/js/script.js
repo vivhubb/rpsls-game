@@ -49,31 +49,41 @@ document.addEventListener("DOMContentLoaded", function() {
  */
 function game(playerChoice) {
 
-    resetZones();
-
-    displayPlayerChoice(playerChoice);
-
     //  creates random choice for the computer
     let randomNumber = Math.floor(Math.random() * 5); 
     let computerChoice = choices[randomNumber];   
+
+    resetZones();
+
+    displayChoices(playerChoice, computerChoice);
     
 }
 
 /**
- * this function displays the choice made by the player in the div
+ * this function displays the choice made by the player and computer in the div
  * pairs up the choice buttons with the respective images
  * @param {string} playerChoice: the choice made by the Player
+ * @param {string} computerChoice: the random choice made by Computer
  */
-function displayPlayerChoice(playerChoice) {
+function displayChoices(playerChoice, computerChoice) {
     
     let playerZone = document.getElementById('playerZone');
-    let image = 'assets/images/' + playerChoice + '.png';
-    let displayChoice = document.createElement('img');
+    let computerZone = document.getElementById('computerZone');
 
-    displayChoice.setAttribute('class', 'images');
-    displayChoice.src = image;
+    let playerImage = 'assets/images/' + playerChoice + '.png';
+    let computerImage = 'assets/images/' + computerChoice + '.png';
 
-    playerZone.appendChild(displayChoice);
+    let displayChoice1 = document.createElement('img');
+    let displayChoice2 = document.createElement('img');
+
+    displayChoice1.setAttribute('class', 'images');
+    displayChoice1.src = playerImage;
+
+    displayChoice2.setAttribute('class', 'images');
+    displayChoice2.src = computerImage;
+
+    playerZone.appendChild(displayChoice1);
+    computerZone.appendChild(displayChoice2);
 
 }
 
@@ -83,10 +93,13 @@ function displayPlayerChoice(playerChoice) {
 function resetZones() {
 
     let replaceImage = document.getElementsByClassName('images');
+    let length = replaceImage.length;
 
-    for (let i = 0; i < replaceImage.length; i++) {
-        replaceImage[i].remove();
+    let i = 0;
+
+    while (i < length) {
+        replaceImage[0].remove();
+        i++;
     }
 
 }
-
