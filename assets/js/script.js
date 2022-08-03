@@ -1,6 +1,5 @@
 // wair for the DOM to load content before running game
 // get buttons and add event listeneres to them
-
 document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName('button');
 
@@ -14,7 +13,26 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 } );
 
+/** 
+ * this is the main function which runs the game
+ * @param {string} playerChoice: the choice made by the Player
+ */
+function game(playerChoice) {
+    displayPlayerChoice(playerChoice);
+};
 
+/**
+ * this function displays the choice made by the player in the div
+ * pairs up the choice buttons with the respective images
+ * @param {string} playerChoice: the choice made by the Player
+ */
+function displayPlayerChoice(playerChoice) {
+    
+    let playerZone = document.getElementById('playerZone');
+    let image = '../assets/images/' + playerChoice + '.png';
+    let displayChoice = document.createElement('img');
+    displayChoice.setAttribute('class', 'images')
+    displayChoice.src = image;
+    playerZone.appendChild(displayChoice);
 
-
-
+};
