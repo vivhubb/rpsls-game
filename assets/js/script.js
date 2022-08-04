@@ -57,8 +57,7 @@ function game(playerChoice) {
 
     displayChoices(playerChoice, computerChoice);
 
-    winnerPerRound(playerChoice, computerChoice);
-    
+    winnerPerRound(playerChoice, computerChoice);    
 }
 
 /**
@@ -106,6 +105,10 @@ function resetZones() {
 
 }
 
+/**
+ * this function defines the winner per round
+ * @returns {string} : winner message for the user
+ */
 function winnerPerRound(playerChoice, computerChoice) {
 
     let draw = "IT'S A DRAW!";
@@ -116,16 +119,42 @@ function winnerPerRound(playerChoice, computerChoice) {
     if (playerChoice == computerChoice) {
         return (result.innerText = draw);
     } else if (playerChoice == 'rock' && (computerChoice == 'scissors' || computerChoice == 'lizard')) {
+        incrementPlayerScore();
         return (result.innerText = playerWon);
     } else if (playerChoice == 'paper' && (computerChoice == 'rock' || computerChoice == 'spock')) {
+        incrementPlayerScore();
         return (result.innerText = playerWon);
     } else if (playerChoice == 'scissors' && (computerChoice == 'paper' || computerChoice == 'lizard')) {
+        incrementPlayerScore();
         return (result.innerText = playerWon);
     } else if (playerChoice == 'lizard' && (computerChoice == 'paper' || computerChoice == 'spock')) {
+        incrementPlayerScore()
         return (result.innerText = playerWon);
     } else if (playerChoice == 'spock' && (computerChoice == 'rock' || computerChoice == 'scissors')) {
+        incrementPlayerScore();
         return (result.innerText = playerWon);
     } else if ('undefined') {
+        incrementComputerScore();
         return (result.innerText = computerWon);
     }
+}
+
+/**
+ * this function increments player score when player wins
+ */
+function incrementPlayerScore() {
+
+    let pScore = parseInt(document.getElementById('pScore').innerText);
+    document.getElementById('pScore').innerText = ++pScore;
+
+}
+
+/**
+ * this function increments computer score when computer wins
+ */
+function incrementComputerScore() {
+
+    let cScore = parseInt(document.getElementById('cScore').innerText);
+    document.getElementById('cScore').innerText = ++cScore;
+
 }
