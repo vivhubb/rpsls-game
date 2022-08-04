@@ -26,6 +26,9 @@ let winners = {
         rock: 'SPOCK vaporizes ROCK'
     }
 };
+
+let limit = 4;
+let result = document.getElementById('result');
  
 
 // wair for the DOM to load content before running game
@@ -116,28 +119,27 @@ function winnerPerRound(playerChoice, computerChoice) {
     let draw = "IT'S A DRAW!";
     let playerWon = "PLAYER SCORES!";
     let computerWon = "COMPUTER SCORES!";
-    let result = document.getElementById('result');
 
     if (playerChoice == computerChoice) {
-        return (result.innerText = draw);
+        result.innerText = draw;
     } else if (playerChoice == 'rock' && (computerChoice == 'scissors' || computerChoice == 'lizard')) {
         incrementPlayerScore();
-        return (result.innerText = playerWon);
+        result.innerText = playerWon;
     } else if (playerChoice == 'paper' && (computerChoice == 'rock' || computerChoice == 'spock')) {
         incrementPlayerScore();
-        return (result.innerText = playerWon);
+        result.innerText = playerWon;
     } else if (playerChoice == 'scissors' && (computerChoice == 'paper' || computerChoice == 'lizard')) {
         incrementPlayerScore();
-        return (result.innerText = playerWon);
+        result.innerText = playerWon;
     } else if (playerChoice == 'lizard' && (computerChoice == 'paper' || computerChoice == 'spock')) {
         incrementPlayerScore()
-        return (result.innerText = playerWon);
+        result.innerText = playerWon;
     } else if (playerChoice == 'spock' && (computerChoice == 'rock' || computerChoice == 'scissors')) {
         incrementPlayerScore();
-        return (result.innerText = playerWon);
-    } else if ('undefined') {
+        result.innerText = playerWon;
+    } else {
         incrementComputerScore();
-        return (result.innerText = computerWon);
+        result.innerText = computerWon;
     }
 }
 
@@ -171,15 +173,21 @@ function resetScores() {
 
 /**
  * this function defines the winner when score limit is achieved
+ * and restarts game
  */
 function endGame() {
 
-    let limit = 4;
     let player = document.getElementById('pScore').innerText;
     let computer = document.getElementById('cScore').innerText;
 
     if (player == limit || computer == limit) {
+        if(player > computer) {
+            result.innerText = 'YOU WON! GAME OVER!'
+        } else {
+            result.innerText = 'COMPUTER WON! GAME OVER!'
+        }
+
        resetScores();
-       alert('game over')
+       resetZones();
     }
 }
