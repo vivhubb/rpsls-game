@@ -57,7 +57,9 @@ function game(playerChoice) {
 
     displayChoices(playerChoice, computerChoice);
 
-    winnerPerRound(playerChoice, computerChoice);    
+    winnerPerRound(playerChoice, computerChoice);
+
+    endGame();
 }
 
 /**
@@ -112,8 +114,8 @@ function resetZones() {
 function winnerPerRound(playerChoice, computerChoice) {
 
     let draw = "IT'S A DRAW!";
-    let playerWon = "PLAYER WON!";
-    let computerWon = "COMPUTER WON!";
+    let playerWon = "PLAYER SCORES!";
+    let computerWon = "COMPUTER SCORES!";
     let result = document.getElementById('result');
 
     if (playerChoice == computerChoice) {
@@ -157,4 +159,27 @@ function incrementComputerScore() {
     let cScore = parseInt(document.getElementById('cScore').innerText);
     document.getElementById('cScore').innerText = ++cScore;
 
+}
+
+/**
+ * this function resets the scores to 0
+ */
+function resetScores() {
+    document.getElementById('pScore').innerText = 0;
+    document.getElementById('cScore').innerText = 0;
+}
+
+/**
+ * this function defines the winner when score limit is achieved
+ */
+function endGame() {
+
+    let limit = 4;
+    let player = document.getElementById('pScore').innerText;
+    let computer = document.getElementById('cScore').innerText;
+
+    if (player == limit || computer == limit) {
+       resetScores();
+       alert('game over')
+    }
 }
