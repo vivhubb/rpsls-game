@@ -56,6 +56,8 @@ function game(playerChoice) {
     resetZones();
 
     displayChoices(playerChoice, computerChoice);
+
+    winnerPerRound(playerChoice, computerChoice);
     
 }
 
@@ -102,4 +104,28 @@ function resetZones() {
         i++;
     }
 
+}
+
+function winnerPerRound(playerChoice, computerChoice) {
+
+    let draw = "IT'S A DRAW!";
+    let playerWon = "PLAYER WON!";
+    let computerWon = "COMPUTER WON!";
+    let result = document.getElementById('result');
+
+    if (playerChoice == computerChoice) {
+        return (result.innerText = draw);
+    } else if (playerChoice == 'rock' && (computerChoice == 'scissors' || computerChoice == 'lizard')) {
+        return (result.innerText = playerWon);
+    } else if (playerChoice == 'paper' && (computerChoice == 'rock' || computerChoice == 'spock')) {
+        return (result.innerText = playerWon);
+    } else if (playerChoice == 'scissors' && (computerChoice == 'paper' || computerChoice == 'lizard')) {
+        return (result.innerText = playerWon);
+    } else if (playerChoice == 'lizard' && (computerChoice == 'paper' || computerChoice == 'spock')) {
+        return (result.innerText = playerWon);
+    } else if (playerChoice == 'spock' && (computerChoice == 'rock' || computerChoice == 'scissors')) {
+        return (result.innerText = playerWon);
+    } else if ('undefined') {
+        return (result.innerText = computerWon);
+    }
 }

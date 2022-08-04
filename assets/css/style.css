@@ -13,6 +13,7 @@ body {
     margin: 2em auto;
     font-weight: bolder;
     overflow: hidden;
+    position: relative;
 }
 
 .player {
@@ -32,6 +33,15 @@ body {
 
 .images {
     padding: 11%;
+}
+
+#result {
+    width: 80%;
+    height: 1.1em;
+    border: 4px solid #3f4242;
+    position: relative;
+    overflow: hidden;
+    margin: 1em auto;
 }
 
 /* choices buttons */
