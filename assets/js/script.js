@@ -27,6 +27,7 @@ let winners = {
     }
 };
 
+//global variables for score limitation and result message for user
 let limit = 4;
 let result = document.getElementById('result');
  
