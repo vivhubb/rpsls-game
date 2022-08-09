@@ -30,22 +30,22 @@ let winners = {
 //global variables for score limitation and result message for user
 let limit = 4;
 let result = document.getElementById('result');
- 
+
 
 // wair for the DOM to load content before running game
 // get buttons and add event listeners to them
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName('button');
 
     for (let button of buttons) {
-        button.addEventListener('click', function(){
+        button.addEventListener('click', function () {
 
             let playerChoice = this.getAttribute('data-type');
 
             game(playerChoice);
         })
     }
-} );
+});
 
 /** 
  * this is the main function which runs the game
@@ -54,8 +54,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function game(playerChoice) {
 
     //  creates random choice for the computer
-    let randomNumber = Math.floor(Math.random() * 5); 
-    let computerChoice = choices[randomNumber];   
+    let randomNumber = Math.floor(Math.random() * 5);
+    let computerChoice = choices[randomNumber];
 
     resetZones();
 
@@ -73,7 +73,7 @@ function game(playerChoice) {
  * @param {string} computerChoice: the random choice made by Computer
  */
 function displayChoices(playerChoice, computerChoice) {
-    
+
     let playerZone = document.getElementById('playerZone');
     let computerZone = document.getElementById('computerZone');
 
@@ -116,32 +116,11 @@ function resetZones() {
  * @returns {string} : winner message for the user
  */
 function winnerPerRound(playerChoice, computerChoice) {
-
     let draw = "IT'S A DRAW!";
-    let playerWon = "PLAYER SCORES!";
-    let computerWon = "COMPUTER SCORES!";
 
-    if (playerChoice == computerChoice) {
-        result.innerText = draw;
-    } else if (playerChoice == 'rock' && (computerChoice == 'scissors' || computerChoice == 'lizard')) {
-        incrementPlayerScore();
-        result.innerText = playerWon;
-    } else if (playerChoice == 'paper' && (computerChoice == 'rock' || computerChoice == 'spock')) {
-        incrementPlayerScore();
-        result.innerText = playerWon;
-    } else if (playerChoice == 'scissors' && (computerChoice == 'paper' || computerChoice == 'lizard')) {
-        incrementPlayerScore();
-        result.innerText = playerWon;
-    } else if (playerChoice == 'lizard' && (computerChoice == 'paper' || computerChoice == 'spock')) {
-        incrementPlayerScore()
-        result.innerText = playerWon;
-    } else if (playerChoice == 'spock' && (computerChoice == 'rock' || computerChoice == 'scissors')) {
-        incrementPlayerScore();
-        result.innerText = playerWon;
-    } else {
-        incrementComputerScore();
-        result.innerText = computerWon;
-    }
+    return playerChoice === computerChoice ? result.innerText = draw
+    : (typeof (winners[playerChoice][computerChoice]) === 'undefined') ? incrementComputerScore()
+    : incrementPlayerScore()
 }
 
 /**
@@ -149,8 +128,12 @@ function winnerPerRound(playerChoice, computerChoice) {
  */
 function incrementPlayerScore() {
 
+    let playerWon = "PLAYER SCORES!";
     let pScore = parseInt(document.getElementById('pScore').innerText);
+
     document.getElementById('pScore').innerText = ++pScore;
+
+    result.innerText = playerWon;
 
 }
 
@@ -158,9 +141,13 @@ function incrementPlayerScore() {
  * this function increments computer score when computer wins
  */
 function incrementComputerScore() {
-
+    
+    let computerWon = "COMPUTER SCORES!";  
     let cScore = parseInt(document.getElementById('cScore').innerText);
+    
     document.getElementById('cScore').innerText = ++cScore;
+
+    result.innerText = computerWon;
 
 }
 
@@ -182,13 +169,13 @@ function endGame() {
     let computer = document.getElementById('cScore').innerText;
 
     if (player == limit || computer == limit) {
-        if(player > computer) {
+        if (player > computer) {
             result.innerText = 'YOU WON! GAME OVER!'
         } else {
             result.innerText = 'COMPUTER WON! GAME OVER!'
         }
 
-       resetScores();
-       resetZones();
+        resetScores();
+        resetZones();
     }
 }
